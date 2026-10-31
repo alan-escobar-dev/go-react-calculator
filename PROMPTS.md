@@ -178,3 +178,9 @@ When the port change is done, give me the updated commands so I can try the serv
 ```text
 Step 4 is committed. Let’s continue with Step 5. Since I come from Angular, whenever it helps, compare React concepts with their Angular equivalents
 ```
+
+## 12. Start Step 6
+
+```text
+Step 5 is committed and everything works. Let’s continue with Step 6
+```
