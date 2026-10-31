@@ -190,3 +190,9 @@ Step 5 is committed and everything works. Let’s continue with Step 6
 ```text
 Step 6 is committed. Let’s continue with Step 7, when you’re done, walk me through one example key sequence, like “15 % 200 =”, showing how the state changes after each key press
 ```
+
+## 14. Start Step 8
+
+```text
+Step 7 is committed. Let’s continue with Step 8. When it’s done, explain how the useCalculator hook connects the reducer with the API, and tell me how to run both servers to try the calculator in the browser
+```
