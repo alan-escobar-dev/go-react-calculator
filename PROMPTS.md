@@ -154,3 +154,21 @@ Step 1 is committed. Let’s continue with Step 2
 ```text
 Step 2 is committed. Let’s continue with Step 3. Since this is the core of the backend, when you’re done, also walk me through the full request flow: from the HTTP request arriving to the JSON response going out.
 ```
+
+## 9. Concurrency question and Step 4
+
+```text
+Step 3 is committed. Quick question before Step 4: is the handler safe for concurrent requests, given that Go’s server runs each request in its own goroutine? Then let’s continue with Step 4
+```
+
+## 10. Port 8081 and README notes
+
+```text
+Let's go with option 1: move the project to port 8081, including CLAUDE.md and the plan, so the default works on my machine without stopping the NI service
+
+No race test for now, we can revisit it in the Docker step if there's time
+
+Also, make sure the PowerShell BOM finding ends up in the README notes, along with the Invoke-RestMethod examples
+
+When the port change is done, give me the updated commands so I can try the server and the graceful shutdown myself before committing Step 4
+```

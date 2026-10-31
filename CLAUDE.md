@@ -48,7 +48,7 @@ PROMPTS.md                log of prompts used during development
 
 <!-- Update these once the projects are scaffolded -->
 - Backend tests: `cd backend && go test ./... -cover`
-- Backend run: `cd backend && go run ./cmd/server` (port 8080)
+- Backend run: `cd backend && go run ./cmd/server` (port 8081)
 - Frontend tests: `cd frontend && npm test`
 - Frontend run: `cd frontend && npm run dev` (port 5173, proxy `/api` to the backend)
 
