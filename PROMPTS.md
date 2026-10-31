@@ -184,3 +184,9 @@ Step 4 is committed. Let’s continue with Step 5. Since I come from Angular, wh
 ```text
 Step 5 is committed and everything works. Let’s continue with Step 6
 ```
+
+## 13. Start Step 7
+
+```text
+Step 6 is committed. Let’s continue with Step 7, when you’re done, walk me through one example key sequence, like “15 % 200 =”, showing how the state changes after each key press
+```
