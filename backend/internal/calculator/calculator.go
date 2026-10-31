@@ -19,6 +19,18 @@ var (
 	// ErrDivisionByZero is returned when dividing by zero (or negative zero).
 	ErrDivisionByZero = errors.New("cannot divide by zero")
 
+	// ErrZeroToNegativePower is returned when zero is raised to a negative
+	// power, which would mean dividing by zero.
+	ErrZeroToNegativePower = errors.New("cannot raise zero to a negative power")
+
+	// ErrComplexResult is returned when a negative number is raised to a
+	// fractional power, which has no real-number result.
+	ErrComplexResult = errors.New("cannot raise a negative number to a fractional power")
+
+	// ErrNegativeSquareRoot is returned for the square root of a negative
+	// number.
+	ErrNegativeSquareRoot = errors.New("cannot take the square root of a negative number")
+
 	// ErrOverflow is returned when a result is too large in magnitude for a
 	// float64 (beyond about ±1.8e308).
 	ErrOverflow = errors.New("result is out of range")
@@ -47,9 +59,47 @@ func Divide(a, b float64) (float64, error) {
 	return checkResult(a / b)
 }
 
+// Power returns base raised to the power exponent. It returns
+// ErrZeroToNegativePower when base is zero and exponent is negative, and
+// ErrComplexResult when base is negative and exponent is fractional.
+// As in Go's math.Pow and JavaScript, 0^0 is 1.
+func Power(base, exponent float64) (float64, error) {
+	if base == 0 && exponent < 0 {
+		return 0, ErrZeroToNegativePower
+	}
+	if base < 0 && exponent != math.Trunc(exponent) {
+		return 0, ErrComplexResult
+	}
+	return checkResult(math.Pow(base, exponent))
+}
+
+// Sqrt returns the square root of x, or ErrNegativeSquareRoot when x is
+// negative.
+func Sqrt(x float64) (float64, error) {
+	if x < 0 {
+		return 0, ErrNegativeSquareRoot
+	}
+	return checkResult(math.Sqrt(x))
+}
+
+// Percentage returns percent % of base, that is percent * base / 100
+// (15 % of 200 is 30).
+func Percentage(percent, base float64) (float64, error) {
+	// Multiplying first keeps everyday results free of rounding noise:
+	// 7 * 3 / 100 is 0.21, while 7 / 100 * 3 is 0.21000000000000002.
+	r := percent * base / 100
+	if math.IsInf(r, 0) {
+		// The product overflowed. Dividing first avoids that intermediate
+		// overflow; checkResult still reports a result that is itself out
+		// of range.
+		r = percent / 100 * base
+	}
+	return checkResult(r)
+}
+
 // checkResult rejects an overflowed (infinite) result and normalizes negative
 // zero. With finite inputs, NaN cannot occur: the operations reject the inputs
-// that would produce it (such as 0 / 0) before computing.
+// that would produce it (0 / 0, √-1, (-8)^0.5) before computing.
 func checkResult(r float64) (float64, error) {
 	if math.IsInf(r, 0) {
 		return 0, ErrOverflow

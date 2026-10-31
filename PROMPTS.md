@@ -142,3 +142,9 @@ After that, please help me install Go. I’ll commit Step 0 before restarting VS
 ```text
 Thank you, we can proceed with step 1
 ```
+
+## 7. Start Step 2
+
+```text
+Step 1 is committed. Let’s continue with Step 2
+```
