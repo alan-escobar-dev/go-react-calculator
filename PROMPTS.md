@@ -196,3 +196,20 @@ Step 6 is committed. Let’s continue with Step 7, when you’re done, walk me t
 ```text
 Step 7 is committed. Let’s continue with Step 8. When it’s done, explain how the useCalculator hook connects the reducer with the API, and tell me how to run both servers to try the calculator in the browser
 ```
+
+## 15. Start Step 9 (styling)
+
+```text
+Step 8 is committed, and I tried the calculator in the browser: it works. Let's continue with Step 9.
+
+Design direction for the styling:
+- A dark theme with purple tones: a near-black, slightly purple background, darker number keys, operators in a purple accent, and "=" as the strongest purple so the eye goes there first. Give C its own color so it's clearly distinct.
+- Rounded keys with subtle hover and pressed states, and a display area that clearly separates the small expression line from the large result.
+- Keep text readable: aim for WCAG AA contrast (4.5:1) on all text, and make the keyboard focus ring clearly visible against the dark background.
+- Define the colors as CSS custom properties in one place, so the palette is easy to tweak later.
+- Keep everything from the plan: plain CSS, a mobile-first 4-column grid, a full-width "=", keys of at least 44 px, touch-action: manipulation, and long expressions that shrink or wrap instead of overflowing.
+
+Also, Vite's dev server reloads the page every time the coverage report is written. Please make it ignore the coverage folder.
+
+When you're done, tell me how to check the layout at phone width in Chrome DevTools.
+```

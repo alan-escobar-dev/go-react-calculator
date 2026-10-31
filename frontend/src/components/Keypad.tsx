@@ -1,43 +1,53 @@
+import type { BinaryOperation } from '../api/calculator.ts'
 import type { CalculatorAction, Digit } from '../state/calculatorReducer.ts'
+
+/** Visual group of a key; each group has its own colors in index.css. */
+type Variant = 'number' | 'operator' | 'clear' | 'equals'
 
 interface Key {
   label: string
   /** Accessible name, for keys whose label is a symbol. */
   name?: string
+  variant: Variant
   action: CalculatorAction
 }
 
 function digit(value: Digit): Key {
-  return { label: value, action: { type: 'digit', digit: value } }
+  return { label: value, variant: 'number', action: { type: 'digit', digit: value } }
+}
+
+function operator(label: string, name: string, operation: BinaryOperation): Key {
+  return {
+    label,
+    name,
+    variant: 'operator',
+    action: { type: 'operator', operator: operation },
+  }
 }
 
 /** The keys in reading order: four per row, then "=" on its own. */
 const KEYS: Key[] = [
-  { label: 'C', name: 'clear', action: { type: 'clear' } },
-  { label: '√', name: 'square root', action: { type: 'sqrt' } },
-  { label: 'xʸ', name: 'power', action: { type: 'operator', operator: 'power' } },
-  {
-    label: '%',
-    name: 'percent of',
-    action: { type: 'operator', operator: 'percentage' },
-  },
+  { label: 'C', name: 'clear', variant: 'clear', action: { type: 'clear' } },
+  { label: '√', name: 'square root', variant: 'operator', action: { type: 'sqrt' } },
+  operator('xʸ', 'power', 'power'),
+  operator('%', 'percent of', 'percentage'),
   digit('7'),
   digit('8'),
   digit('9'),
-  { label: '÷', name: 'divide', action: { type: 'operator', operator: 'divide' } },
+  operator('÷', 'divide', 'divide'),
   digit('4'),
   digit('5'),
   digit('6'),
-  { label: '×', name: 'multiply', action: { type: 'operator', operator: 'multiply' } },
+  operator('×', 'multiply', 'multiply'),
   digit('1'),
   digit('2'),
   digit('3'),
-  { label: '−', name: 'subtract', action: { type: 'operator', operator: 'subtract' } },
-  { label: '±', name: 'toggle sign', action: { type: 'toggleSign' } },
+  operator('−', 'subtract', 'subtract'),
+  { label: '±', name: 'toggle sign', variant: 'number', action: { type: 'toggleSign' } },
   digit('0'),
-  { label: '.', name: 'decimal point', action: { type: 'decimal' } },
-  { label: '+', name: 'add', action: { type: 'operator', operator: 'add' } },
-  { label: '=', name: 'equals', action: { type: 'equals' } },
+  { label: '.', name: 'decimal point', variant: 'number', action: { type: 'decimal' } },
+  operator('+', 'add', 'add'),
+  { label: '=', name: 'equals', variant: 'equals', action: { type: 'equals' } },
 ]
 
 interface KeypadProps {
@@ -47,10 +57,11 @@ interface KeypadProps {
 export function Keypad({ onPress }: KeypadProps) {
   return (
     <div className="keypad">
-      {KEYS.map(({ label, name, action }) => (
+      {KEYS.map(({ label, name, variant, action }) => (
         <button
           key={label}
           type="button"
+          className={`key key--${variant}`}
           aria-label={name}
           onClick={() => onPress(action)}
         >
