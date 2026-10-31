@@ -4,7 +4,9 @@ The prompts I used with Claude Code (VS Code extension) while building this proj
 verbatim and in order.
 
 > **Note:** The initial planning and the project's `CLAUDE.md` (the conventions file Claude Code
-> reads automatically) were drafted with Claude in a separate chat, before this session.
+> reads automatically) were drafted with Claude in a separate chat. I also used that chat
+> throughout the project as a reviewer: to discuss Claude Code's plans and output, and to help
+> me word some of the prompts below.
 
 ## 1. Initial request
 
@@ -133,4 +135,10 @@ Step 0 looks good. A few things before Step 1:
 3. Rename the branch to main.
 
 After that, please help me install Go. I’ll commit Step 0 before restarting VS Code.
+```
+
+## 6. Start Step 1
+
+```text
+Thank you, we can proceed with step 1
 ```
