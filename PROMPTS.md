@@ -148,3 +148,9 @@ Thank you, we can proceed with step 1
 ```text
 Step 1 is committed. Let’s continue with Step 2
 ```
+
+## 8. Start Step 3
+
+```text
+Step 2 is committed. Let’s continue with Step 3. Since this is the core of the backend, when you’re done, also walk me through the full request flow: from the HTTP request arriving to the JSON response going out.
+```
