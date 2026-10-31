@@ -213,3 +213,27 @@ Also, Vite's dev server reloads the page every time the coverage report is writt
 
 When you're done, tell me how to check the layout at phone width in Chrome DevTools.
 ```
+
+## 16. Start Step 10 (README)
+
+```text
+Step 9 is committed. Let's skip the keyboard support stretch goal and continue with Step 10.
+
+For the README, write it for a reviewer who wants to understand and run the project quickly:
+- Start with a short overview and a screenshot of the calculator. Capture clean desktop and phone screenshots of the final UI into a docs/ folder, like you did in Step 9.
+- Requirements (Go and Node versions), then a quick start for running the backend and frontend.
+- How to run the tests and the coverage reports, with a short coverage summary for both layers.
+- An API reference: the endpoint, request and response shapes, the error format and status codes, with examples for both curl (bash) and PowerShell (Invoke-RestMethod), including the BOM note.
+- Design decisions with their trade-offs: the single endpoint, the standard library only, the pure calculator package and sentinel errors, strict JSON decoding, the reducer's phases, the backend doing all the math, request cancellation, plain CSS with WCAG AA contrast, and why the port is 8081.
+- Assumptions and known limitations, including the notes we agreed on earlier.
+- A section on how I used AI: Claude Code for implementation, a separate Claude chat as a reviewer, and me reviewing, testing and committing every step. Link to PROMPTS.md.
+- A short project structure overview.
+
+Keep it concise and easy to scan: tables and short sections over long paragraphs. Also finalize PROMPTS.md and update the layout in CLAUDE.md, as the plan says
+```
+
+## 17. Resume after a session restart
+
+```text
+You can continue :)
+```

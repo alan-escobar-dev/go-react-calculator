@@ -19,6 +19,9 @@ backend/                  Go module
 frontend/                 React + TypeScript (Vite)
   src/api/                typed client for the backend API
   src/components/         UI components
+  src/state/              keypad reducer, display selectors, useCalculator hook
+  src/utils/              display formatting helpers
+docs/                     README screenshots
 README.md                 setup, API examples, design decisions
 PROMPTS.md                log of prompts used during development
 ```
@@ -46,7 +49,6 @@ PROMPTS.md                log of prompts used during development
 
 ## Commands
 
-<!-- Update these once the projects are scaffolded -->
 - Backend tests: `cd backend && go test ./... -cover`
 - Backend run: `cd backend && go run ./cmd/server` (port 8081)
 - Frontend tests: `cd frontend && npm test`
