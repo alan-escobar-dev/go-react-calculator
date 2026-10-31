@@ -172,3 +172,9 @@ Also, make sure the PowerShell BOM finding ends up in the README notes, along wi
 
 When the port change is done, give me the updated commands so I can try the server and the graceful shutdown myself before committing Step 4
 ```
+
+## 11. Start Step 5
+
+```text
+Step 4 is committed. Let’s continue with Step 5. Since I come from Angular, whenever it helps, compare React concepts with their Angular equivalents
+```
