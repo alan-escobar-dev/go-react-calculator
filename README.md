@@ -19,7 +19,7 @@ backend does all the math; the frontend handles keypad input and displays result
 
 | Tool | Version | Notes |
 |---|---|---|
-| Go | 1.27+ | Go 1.21 or newer downloads the required toolchain automatically |
+| Go | 1.24+ | Developed and tested with Go 1.27 |
 | Node.js | 22.12+ or 24+ | Minimum for Vite 8 and Vitest 5 |
 | npm | 10+ | Ships with Node.js |
 

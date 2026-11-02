@@ -1,3 +1,3 @@
 module github.com/alan-escobar-dev/go-react-calculator/backend
 
-go 1.27.0
+go 1.24.0

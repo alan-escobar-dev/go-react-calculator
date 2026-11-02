@@ -237,3 +237,19 @@ Keep it concise and easy to scan: tables and short sections over long paragraphs
 ```text
 You can continue :)
 ```
+
+## 18. Lower the Go requirement
+
+```text
+The README is committed and pushed. Docker Desktop is now running; I had to enable WSL's Virtual Machine Platform first. Before Step 11, as you suggested, lower the go directive in go.mod to 1.24, update the Go requirement in the README, and rerun the tests. Stop after that so I can commit it on its own
+```
+
+Follow-ups in the same exchange:
+
+```text
+oh wait, are we still on max effort?
+```
+
+```text
+Let's continue
+```
