@@ -265,3 +265,9 @@ The go.mod change is committed. Let's do Step 11: Docker Compose with nginx serv
 ```text
 Yes, please add compose.yaml and the Dockerfiles to the CLAUDE.md layout
 ```
+
+## 21. Demo GIF in the README
+
+```text
+Step 11 is committed. I added a short demo GIF at docs/demo.gif. At the top of the README, replace the desktop screenshot with the GIF and keep the phone screenshot next to it. Delete docs/screenshot-desktop.png if nothing else uses it. Keep it as its own commit. Thanks!!!
+```

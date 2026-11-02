@@ -4,7 +4,7 @@ A calculator with a React + TypeScript keypad that sends every calculation to a 
 backend does all the math; the frontend handles keypad input and displays results and errors.
 
 <p align="center">
-  <img src="docs/screenshot-desktop.png" alt="Desktop browser showing 15 % of 200 = 30" width="500">
+  <img src="docs/demo.gif" alt="Animated demo: using the calculator's keypad in the browser" width="225">
   &nbsp;&nbsp;
   <img src="docs/screenshot-phone.png" alt="Phone-width view showing 2 ^ 10 = 1024" width="200">
 </p>
