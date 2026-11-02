@@ -16,12 +16,16 @@ backend/                  Go module
   cmd/server/             entrypoint only (wiring, config, server start)
   internal/calculator/    pure arithmetic logic, no HTTP dependencies
   internal/api/           HTTP handlers, request validation, JSON responses
+  Dockerfile              Go build stage, then a distroless non-root runtime image
 frontend/                 React + TypeScript (Vite)
   src/api/                typed client for the backend API
   src/components/         UI components
   src/state/              keypad reducer, display selectors, useCalculator hook
   src/utils/              display formatting helpers
+  Dockerfile              Node build stage, then nginx serving the UI
+  nginx.conf              serves the UI and proxies /api/ to the backend
 docs/                     README screenshots
+compose.yaml              Docker Compose: nginx (UI and /api proxy) plus the Go API
 README.md                 setup, API examples, design decisions
 PROMPTS.md                log of prompts used during development
 ```

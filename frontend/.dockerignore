@@ -1,0 +1,4 @@
+# The image installs its own Linux dependencies and builds from the sources.
+node_modules
+dist
+coverage

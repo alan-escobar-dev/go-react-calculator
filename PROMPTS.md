@@ -253,3 +253,15 @@ oh wait, are we still on max effort?
 ```text
 Let's continue
 ```
+
+## 19. Start Step 11 (Docker)
+
+```text
+The go.mod change is committed. Let's do Step 11: Docker Compose with nginx serving the UI and the Go API behind it, plus a "Run with Docker" section in the README. Skip the race test. For the Go build image, use the current supported release (1.27), not 1.24: Go only supports the two newest releases, so 1.24 no longer gets security fixes. The go.mod directive stays as the compatibility floor. When it's done, give me the commands to run it myself and check it in the browser.
+```
+
+## 20. Docker files in the CLAUDE.md layout
+
+```text
+Yes, please add compose.yaml and the Dockerfiles to the CLAUDE.md layout
+```

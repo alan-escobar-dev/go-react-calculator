@@ -1,0 +1,15 @@
+name: go-react-calculator
+
+services:
+  # The Go API. Not published: only the frontend container can reach it.
+  backend:
+    build: ./backend
+
+  # nginx: serves the UI and proxies /api/ to the backend.
+  frontend:
+    build: ./frontend
+    ports:
+      # Bound to localhost only, like the development servers.
+      - "127.0.0.1:8081:8081"
+    depends_on:
+      - backend

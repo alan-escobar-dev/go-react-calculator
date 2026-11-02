@@ -22,6 +22,7 @@ backend does all the math; the frontend handles keypad input and displays result
 | Go | 1.24+ | Developed and tested with Go 1.27 |
 | Node.js | 22.12+ or 24+ | Minimum for Vite 8 and Vitest 5 |
 | npm | 10+ | Ships with Node.js |
+| Docker (optional) | Compose v2 | Only for [Run with Docker](#run-with-docker); Docker Desktop includes both |
 
 ## Quick start
 
@@ -45,6 +46,26 @@ down gracefully.
 The API listens on `127.0.0.1:8081` by default. Set `ADDR` to change it (for example
 `ADDR=127.0.0.1:9090`), and update the proxy target in
 [`frontend/vite.config.ts`](frontend/vite.config.ts) to match.
+
+## Run with Docker
+
+From the repository root, with Docker running:
+
+```bash
+docker compose up --build
+```
+
+Open <http://localhost:8081>. Stop with Ctrl+C, then remove the containers with
+`docker compose down`. Stop the development servers first, since both setups use port 8081.
+
+| Service | Built with | Runs on | Role |
+|---|---|---|---|
+| `frontend` | `node:24-alpine`: `npm ci`, then type-check and build | `nginxinc/nginx-unprivileged` as a non-root user (24.5 MB) | Serves the UI and proxies `/api/` to the backend; published on `127.0.0.1:8081` only |
+| `backend` | `golang:1.27-alpine`: a static binary | `gcr.io/distroless/static-debian13:nonroot` (3.6 MB) | The Go API, reachable only inside the Compose network |
+
+The browser still talks to a single origin, now nginx instead of Vite, so the frontend code is
+unchanged and the [API examples](#examples) work against the same URL. The Go image uses the
+current Go release; the `go 1.24.0` line in `go.mod` is only the minimum version.
 
 ## Tests and coverage
 
@@ -161,6 +182,7 @@ try {
 | Request cancellation | The `useCalculator` hook sends the pending request with an `AbortController`. Pressing C or unmounting aborts it, and late answers are ignored. | A little more code than an uncancelled call |
 | Plain CSS with WCAG AA contrast | One stylesheet with the palette as CSS custom properties. Every text color is at least 4.5:1 on its background, including hover and pressed states (the tightest is 4.78:1), and the focus ring is at least 3:1. | Class names are global, so they follow a naming convention instead of being scoped |
 | Port 8081 on loopback | Port 8080 was taken by another service on the development machine. Binding `127.0.0.1` avoids a Windows Firewall prompt on every `go run`. | Not the usual 8080; `ADDR` overrides it |
+| Docker Compose: nginx serves the UI and proxies `/api/` to a separate Go container | The backend stays a pure API with its own minimal image (distroless, non-root), and the frontend code is identical in development (Vite's proxy) and in Docker (nginx) | Two images and an nginx config instead of a single container |
 
 ## Assumptions
 
@@ -212,13 +234,17 @@ backend/
   cmd/server/            entrypoint: ADDR config, logging, timeouts, graceful shutdown
   internal/calculator/   pure arithmetic and sentinel errors
   internal/api/          HTTP handler, strict JSON decoding, error-to-status mapping
+  Dockerfile             static binary on a distroless, non-root image
 frontend/
   src/api/               typed API client, the only code that calls fetch
   src/state/             keypad reducer, display selectors, useCalculator hook
   src/components/        Calculator, Display, Keypad
   src/utils/             number formatting for the display
   src/index.css          theme and responsive layout
+  Dockerfile             builds the UI with Node, serves it with nginx
+  nginx.conf             serves the UI and proxies /api/ to the backend
 docs/                    README screenshots
+compose.yaml             runs both containers
 CLAUDE.md                conventions for Claude Code
 PROMPTS.md               prompts used during development
 ```
